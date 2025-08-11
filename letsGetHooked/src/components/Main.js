@@ -1,10 +1,24 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import {useState} from "react"
+import { useState } from "react";
 
 const Main = () => {
+  const [filteredData, setFilteredData] = useState(resList);
 
-  const [filteredData, setFilteredData] = useState(resList)
+  const handleSearch = (event) => {
+    let searchValue = event.target.value;
+
+    if(searchValue === ""){
+      setFilteredData(resList)
+      return
+    }
+
+    let filteredSearchList = filteredData.filter((item) =>
+      item.resName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    setFilteredData(filteredSearchList);
+  };
 
   return (
     <div className="body">
@@ -12,13 +26,20 @@ const Main = () => {
         <button
           className="filter-btn"
           onClick={() => {
-           setFilteredData(filteredData.filter(item =>(
-            item.ratings.slice(0,3) > 4.6
-           )))
+            setFilteredData(
+              filteredData.filter((item) => item.ratings.slice(0, 3) > 4.6)
+            );
           }}
         >
           Top Rated Restaurants
         </button>
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search for Food"
+            onChange={handleSearch}
+          />
+        </div>
       </div>
       <div className="restaurant-container">
         {filteredData?.map((item) => (
