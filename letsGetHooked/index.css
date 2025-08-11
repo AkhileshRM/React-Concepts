@@ -55,3 +55,8 @@ width: 100%;
     margin:10px;
     cursor:pointer;
 }
+
+.filter{
+    display:flex;
+    justify-content: space-between;
+}
