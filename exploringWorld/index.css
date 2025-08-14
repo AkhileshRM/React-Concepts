@@ -1,0 +1,123 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.header{
+    display:flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo{
+    width: 150px;
+}
+
+.nav-items{
+display: flex;
+align-items: center;
+width:50%;
+}
+
+.nav-items > ul{
+    font-size: 24px;
+    display:flex;
+    list-style: none;
+}
+
+
+.nav-items li{
+    padding: 10px;
+    margin:10px;
+}
+
+.restaurant-card{
+    margin:10px;
+    background-color: gray;
+    width:22%;
+    border-radius: 20px;
+}
+
+.restaurant-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+    transform: scale(1.02)
+}
+
+.search{
+    padding: 10px;
+}
+
+.res-logo{
+width: 100%;
+border-top-left-radius: 20px;
+border-top-right-radius:20px;
+min-height:300px;
+max-height: 300px;
+}
+
+.restaurant-container{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+
+.filter-btn{
+    margin:10px;
+    cursor:pointer;
+}
+
+.filter{
+    display:flex;
+    justify-content: space-between;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+
+.shimmer-card{
+    margin:10px; 
+    width:200px;
+    height:200px;
+    background-color: #f0f0f0;
+}
+
+.login-btn{
+   padding:10px 30px;
+   font-size:18px;
+   border-radius: 50px;
+   cursor:pointer;
+}
+
+.logo-container{
+    width:50%;
+}
+
+.resName{
+    text-align: center;
+    margin:10px;
+}
+
+.resType{
+    text-align: center;
+    margin:10px;
+}
+
+.resRatings{
+    text-align: center;
+    margin:10px;
+}
+
+.deliveryTime{
+    text-align: center;
+    margin:10px;
+}
+
+.cost{
+    text-align: center;
+    margin:10px;
+}
