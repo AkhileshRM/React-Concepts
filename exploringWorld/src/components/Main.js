@@ -101,7 +101,7 @@ const Main = () => {
               <Link key={item.id} to={"/restaurant/" + item.id} style={{textDecoration: "none", color:"inherit"}}>
                 <RestaurantCard
                   resName={item?.name}
-                  resType={item?.cuisines.join(",")}
+                  resType={item?.cuisines.join(", ")}
                   ratings={`${item?.avgRating} stars`}
                   deliveryTime={`${item?.sla?.deliveryTime} minutes`}
                   imageURL={CDN_URL + item.cloudinaryImageId}

@@ -127,3 +127,14 @@ max-height: 300px;
 .restaurant-container > a{
     width: 22%;
 }
+
+.recommended-image{
+ width: 20%;
+}
+
+.recommendations{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:20px;
+}
