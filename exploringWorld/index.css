@@ -1,8 +1,8 @@
-*{
+/* *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
+} */
 
 .header{
     display:flex;
@@ -33,10 +33,12 @@ width:50%;
 }
 
 .restaurant-card{
-    margin:10px;
     background-color: gray;
-    width:22%;
+    width:100%;
     border-radius: 20px;
+    padding-bottom:10px;
+    min-height:600px;
+    margin-bottom: 20px;
 }
 
 .restaurant-card:hover{
@@ -120,4 +122,8 @@ max-height: 300px;
 .cost{
     text-align: center;
     margin:10px;
+}
+
+.restaurant-container > a{
+    width: 22%;
 }

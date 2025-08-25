@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { CDN_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const [resList, setResList] = useState([]);
@@ -17,16 +18,20 @@ const Main = () => {
   }, []);
 
   const getData = async () => {
-    const response = await fetch(
-      "https://swiggy-api-4c740.web.app/swiggy-api.json"
-    );
-    const data = await response.json();
-    let restaurants =
-      data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
-        (i) => i.info
+    try {
+      const response = await fetch(
+        "https://swiggy-api-4c740.web.app/swiggy-api.json"
       );
-    setResList(restaurants);
-    setFilteredData(restaurants);
+      const data = await response.json();
+      let restaurants =
+        data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+          (i) => i.info
+        );
+      setResList(restaurants);
+      setFilteredData(restaurants);
+    } catch (error) {
+      console.log("Error occurred", error);
+    }
   };
 
   // console.log("Success")
@@ -93,15 +98,16 @@ const Main = () => {
           </div>
           <div className="restaurant-container">
             {filteredData?.map((item) => (
-              <RestaurantCard
-                key={item.id}
-                resName={item?.name}
-                resType={item?.cuisines.join(",")}
-                ratings={`${item?.avgRating} stars`}
-                deliveryTime={`${item?.sla?.deliveryTime} minutes`}
-                imageURL={CDN_URL + item.cloudinaryImageId}
-                cost={item.costForTwo}
-              />
+              <Link key={item.id} to={"/restaurant/" + item.id} style={{textDecoration: "none", color:"inherit"}}>
+                <RestaurantCard
+                  resName={item?.name}
+                  resType={item?.cuisines.join(",")}
+                  ratings={`${item?.avgRating} stars`}
+                  deliveryTime={`${item?.sla?.deliveryTime} minutes`}
+                  imageURL={CDN_URL + item.cloudinaryImageId}
+                  cost={item.costForTwo}
+                />
+              </Link>
             ))}
           </div>
         </div>
