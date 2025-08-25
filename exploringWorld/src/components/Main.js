@@ -20,7 +20,7 @@ const Main = () => {
   const getData = async () => {
     try {
       const response = await fetch(
-        "https://swiggy-api-4c740.web.app/swiggy-api.json"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0059026&lng=77.5468264"
       );
       const data = await response.json();
       let restaurants =
