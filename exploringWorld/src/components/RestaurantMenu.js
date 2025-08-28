@@ -37,7 +37,7 @@ const RestaurantMenu = () => {
       </p>
       <h2>Menu</h2>
       <ul>
-        {itemCards.map((item) => (
+        {itemCards?.map((item) => (
           <li key={item?.card?.info?.id} className="recommendations">
             {item?.card?.info?.name} - {"Rs " + item?.card?.info?.price / 100}{" "}
             <img src={CDN_URL + item?.card?.info?.imageId} alt="Foods" className="recommended-image" />

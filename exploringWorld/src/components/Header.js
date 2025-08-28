@@ -18,24 +18,38 @@ const Header = () => {
       <div className="nav-items">
         <ul>
           <li>
-            <Link to="/" style={{textDecoration: "none", color:"inherit"}}>Home</Link>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about" style={{textDecoration: "none", color:"inherit"}}>About Us</Link>
+            <Link
+              to="/about"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              About Us
+            </Link>
           </li>
           <li>
-            <Link to="/contact" style={{textDecoration: "none", color:"inherit"}}>Contact Us</Link>
+            <Link
+              to="/contact"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Contact Us
+            </Link>
           </li>
           <li>Cart</li>
         </ul>
-        <button
-          className="login-btn"
-          onClick={() => {
-            setBtnName((prev) => !prev);
-          }}
-        >
-          {btnName ? "Login" : "Logout"}
-        </button>
+        <Link to="/login">
+          <button
+            className="login-btn"
+            onClick={() => {
+              setBtnName((prev) => !prev);
+            }}
+          >
+            {btnName ? "Logout" : "Login"}
+          </button>
+        </Link>
       </div>
     </div>
   );
