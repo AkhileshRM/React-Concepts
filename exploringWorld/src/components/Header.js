@@ -1,6 +1,7 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../hooks/useOnlineStatus"
 
 const Header = () => {
   const [btnName, setBtnName] = useState(false);
@@ -10,6 +11,8 @@ const Header = () => {
     console.log("Om namo bhagavate vasudevaya namaha");
   }, [btnName]);
 
+  const status = useOnlineStatus()
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -17,6 +20,9 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>
+            Online Status: {status ? "✅" : "🔴"}
+          </li>
           <li>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               Home
@@ -37,6 +43,9 @@ const Header = () => {
             >
               Contact Us
             </Link>
+          </li>
+          <li>
+            <Link to="/grocery" style={{ textDecoration: "none", color: "inherit" }}>Grocery</Link>
           </li>
           <li>Cart</li>
         </ul>

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { CDN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
+import useOnlineStatus from "../hooks/useOnlineStatus"
+
 const Main = () => {
   const [resList, setResList] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -58,6 +60,10 @@ const Main = () => {
     );
     setFilteredData(listedRestaurants);
   };
+
+  const status = useOnlineStatus()
+  
+  if(status === false) return <h1>Looks like you are Offline! Please check your connection</h1>
 
   return (
     <>

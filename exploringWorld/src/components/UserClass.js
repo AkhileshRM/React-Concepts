@@ -26,10 +26,14 @@ class UserClass extends React.Component {
   }
 
   componentDidUpdate() {
+   this.timerID = setInterval(() => {
+console.log("Timer Running")
+    }, 1000)
     console.log("Component Did Update");
   }
 
   componentWillUnmount(){
+    clearInterval(this.timerID)
     console.log("Component Removed from the Page")
   }
 
@@ -39,7 +43,7 @@ class UserClass extends React.Component {
 
     const { name, location } = this.state.userInfo;
     console.log("Render", name);
-    debugger;
+    // debugger;
 
     return (
       <div className="user-card">
