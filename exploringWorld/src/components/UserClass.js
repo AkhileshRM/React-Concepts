@@ -46,7 +46,7 @@ console.log("Timer Running")
     // debugger;
 
     return (
-      <div className="user-card">
+      <div className="user-card p-[10px] border-[1px] border-black border-solid">
         <h1>Count: {count}</h1>
         <button
           onClick={() => {

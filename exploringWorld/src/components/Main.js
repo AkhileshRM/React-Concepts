@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { CDN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
-import useOnlineStatus from "../hooks/useOnlineStatus"
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Main = () => {
   const [resList, setResList] = useState([]);
@@ -61,9 +61,10 @@ const Main = () => {
     setFilteredData(listedRestaurants);
   };
 
-  const status = useOnlineStatus()
-  
-  if(status === false) return <h1>Looks like you are Offline! Please check your connection</h1>
+  const status = useOnlineStatus();
+
+  if (status === false)
+    return <h1>Looks like you are Offline! Please check your connection</h1>;
 
   return (
     <>
@@ -71,19 +72,23 @@ const Main = () => {
         <Shimmer />
       ) : (
         <div className="body">
-          <div className="filter">
-            <button
-              className="filter-btn"
-              onClick={() => {
-                setFilteredData(
-                  resList?.filter((item) => item.avgRating > 4.2)
-                );
-              }}
-            >
-              Top Rated Restaurants
-            </button>
-            <div className="search">
+          <div className="filter flex justify-between">
+            <div className="search m-4 p-4 flex items-center">
+              <button
+                className="filter-btn px-4 py-2 bg-gray-100 rounded-lg"
+                onClick={() => {
+                  setFilteredData(
+                    resList?.filter((item) => item.avgRating > 4.2)
+                  );
+                }}
+              >
+                Top Rated Restaurants
+              </button>
+            </div>
+
+            <div className="search m-4 p-4">
               <input
+                className="border-2 border-black"
                 type="text"
                 placeholder="Search for Food"
                 // onChange={handleSearch}
@@ -91,6 +96,7 @@ const Main = () => {
                 value={search}
               />
               <button
+                className="search-btn px-4 py-2 bg-green-100 m-4 rounded-lg"
                 onClick={() => {
                   const listedRestaurants = resList?.filter((item) =>
                     item?.name.toLowerCase().includes(search.toLowerCase())
@@ -102,9 +108,13 @@ const Main = () => {
               </button>
             </div>
           </div>
-          <div className="restaurant-container">
+          <div className="restaurant-container flex flex-wrap justify-evenly">
             {filteredData?.map((item) => (
-              <Link key={item.id} to={"/restaurant/" + item.id} style={{textDecoration: "none", color:"inherit"}}>
+              <Link
+                key={item.id}
+                to={"/restaurant/" + item.id}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <RestaurantCard
                   resName={item?.name}
                   resType={item?.cuisines.join(", ")}

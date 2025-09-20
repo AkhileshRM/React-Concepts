@@ -1,7 +1,7 @@
 const User = ({name}) => {
   return (
     <>
-      <div className="user-card">
+      <div className="user-card p-[10px] border-[1px] border-black border-solid">
         <h2>{name}</h2>
         <h3>Location: Bangalore</h3>
         <h4>Contact: akhilesh.madhyastha@gmail.com</h4>
