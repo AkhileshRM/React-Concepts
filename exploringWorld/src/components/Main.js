@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { CDN_URL } from "../utils/constants";
@@ -66,6 +66,8 @@ const Main = () => {
   if (status === false)
     return <h1>Looks like you are Offline! Please check your connection</h1>;
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   return (
     <>
       {filteredData.length === 0 ? (
@@ -115,14 +117,25 @@ const Main = () => {
                 to={"/restaurant/" + item.id}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <RestaurantCard
-                  resName={item?.name}
-                  resType={item?.cuisines.join(", ")}
-                  ratings={`${item?.avgRating} stars`}
-                  deliveryTime={`${item?.sla?.deliveryTime} minutes`}
-                  imageURL={CDN_URL + item.cloudinaryImageId}
-                  cost={item.costForTwo}
-                />
+                {item?.isOpen ? (
+                  <RestaurantCardPromoted
+                    resName={item?.name}
+                    resType={item?.cuisines.join(", ")}
+                    ratings={`${item?.avgRating} stars`}
+                    deliveryTime={`${item?.sla?.deliveryTime} minutes`}
+                    imageURL={CDN_URL + item.cloudinaryImageId}
+                    cost={item.costForTwo}
+                  />
+                ) : (
+                  <RestaurantCard
+                    resName={item?.name}
+                    resType={item?.cuisines.join(", ")}
+                    ratings={`${item?.avgRating} stars`}
+                    deliveryTime={`${item?.sla?.deliveryTime} minutes`}
+                    imageURL={CDN_URL + item.cloudinaryImageId}
+                    cost={item.costForTwo}
+                  />
+                )}
               </Link>
             ))}
           </div>
