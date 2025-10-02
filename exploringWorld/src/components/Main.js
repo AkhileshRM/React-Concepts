@@ -1,10 +1,13 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { CDN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 import useOnlineStatus from "../hooks/useOnlineStatus";
+
+import UserContext from "../utils/UserContext";
+import ThemeContext from "../utils/ThemeContext";
 
 const Main = () => {
   const [resList, setResList] = useState([]);
@@ -68,12 +71,20 @@ const Main = () => {
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
+  //Context API
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
+  const { theme, setDarkMode } = useContext(ThemeContext);
+
+  const darkModeStyles = "bg-slate-400"
+
   return (
     <>
       {filteredData.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="body">
+        <div className={theme ? darkModeStyles : "body"}>
           <div className="filter flex justify-between">
             <div className="search m-4 p-4 flex items-center">
               <button
@@ -85,6 +96,24 @@ const Main = () => {
                 }}
               >
                 Top Rated Restaurants
+              </button>
+            </div>
+            <div className="search m-4 p-4 flex items-center">
+              <label className="mr-2">User Name:</label>
+              <input
+                type="text"
+                className="border-black border-2"
+                onChange={(event) => setUserName(event.target.value)}
+                value={loggedInUser}
+              />
+            </div>
+
+            <div className="search m-4 p-4 flex items-center">
+              <button
+                className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+                onClick={() => setDarkMode(!theme)}
+              >
+                {theme ? "Dark Mode" : "White Mode"}
               </button>
             </div>
 
