@@ -1,7 +1,8 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useContext} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState(false);
@@ -13,6 +14,11 @@ const Header = () => {
 
   const status = useOnlineStatus();
 
+  const {loggedInUser} = useContext(UserContext)
+
+  console.log("Context API LoggedIn User", loggedInUser)
+
+  
   return (
     <div className="header flex justify-between items-center bg-pink-100 shadow-lg">
       <div className="logo-container">
@@ -63,6 +69,7 @@ const Header = () => {
               </button>
             </Link>
           </li>
+           <li className="px-4 text-xl font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
