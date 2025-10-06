@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 
+import {useSelector} from "react-redux"
+
 const Header = () => {
   const [btnName, setBtnName] = useState(false);
   console.log("render");
@@ -15,10 +17,11 @@ const Header = () => {
   const status = useOnlineStatus();
 
   const {loggedInUser} = useContext(UserContext)
-
   console.log("Context API LoggedIn User", loggedInUser)
 
-  
+  const cartItems = useSelector((store) => store.cart.items)
+  console.log(cartItems)
+
   return (
     <div className="header flex justify-between items-center bg-pink-100 shadow-lg">
       <div className="logo-container">
@@ -56,7 +59,7 @@ const Header = () => {
               Grocery
             </Link>
           </li>
-          <li className="px-4 text-xl">Cart</li>
+          <li className="px-4 text-2xl font-bold"><Link to="/cart">🛒 - ({cartItems.length})</Link></li>
           <li className="px-4 text-xl">
             <Link to="/login">
               <button
@@ -69,7 +72,7 @@ const Header = () => {
               </button>
             </Link>
           </li>
-           <li className="px-4 text-xl font-bold">{loggedInUser}</li>
+          <li className="px-4 text-xl font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>

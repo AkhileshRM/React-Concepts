@@ -1,7 +1,16 @@
 import { CDN_URL } from "../utils/constants";
 
-const ItemList = ({ items }) => {
+import { useDispatch } from "react-redux";
+import { addItem, removeItem } from "../utils/cartSlice";
+
+const ItemList = ({ items, children }) => {
+  const dispatch = useDispatch();
+  const handleAdd = (item) => {
+    dispatch(addItem(item));
+  };
+
   console.log(items);
+
   return (
     <div>
       {items?.map((item) => (
@@ -21,12 +30,20 @@ const ItemList = ({ items }) => {
               </span>
               <p className="text-xs">{item?.card?.info?.description}</p>
             </div>
-      <div className="w-5/12 relative">          
-              <button className="px-4 py-1 bg-white shadow-lg absolute rounded-lg mx-8 font-sans text-green-500 font-bold uppercase">Add</button>
-                  <img className="rounded-lg"
+
+            <div className="w-5/12 relative">
+              <button
+                className="px-4 py-1 bg-white shadow-lg absolute rounded-lg mx-8 font-sans text-green-500 font-bold uppercase"
+                onClick={() => handleAdd(item)}
+              >
+                Add
+              </button>
+              <img
+                className="rounded-lg"
                 src={CDN_URL + item?.card?.info?.imageId}
                 alt="recommended-foods"
               />
+              {children}
             </div>
           </div>
         </div>
@@ -35,4 +52,24 @@ const ItemList = ({ items }) => {
   );
 };
 
+export const modifiedItemList = (ItemList) => {
+  return (props) => {
+    const dispatch = useDispatch();
+    const handleDelete = () => {
+      dispatch(removeItem());
+    };
+    return (
+      <div>
+        <ItemList {...props}>
+          <button
+            onClick={handleDelete}
+            className="px-4 py-1 bg-white shadow-lg rounded-lg mx-8 font-sans text-green-500 font-bold uppercase"
+          >
+            Remove
+          </button>
+        </ItemList>
+      </div>
+    );
+  };
+};
 export default ItemList;
