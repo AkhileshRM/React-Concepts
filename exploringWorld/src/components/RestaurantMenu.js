@@ -24,7 +24,7 @@ const resInfo = useRestaurantMenu(hotelId)
   //   console.log(data);
   //   setResInfo(data);
   // };
-
+  
   const { name, cuisines, costForTwoMessage } =
     resInfo?.data?.cards[2]?.card?.card?.info || {};
   const { itemCards } =

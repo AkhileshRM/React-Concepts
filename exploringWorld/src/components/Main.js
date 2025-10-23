@@ -91,7 +91,7 @@ const Main = () => {
                 className="filter-btn px-4 py-2 bg-gray-100 rounded-lg"
                 onClick={() => {
                   setFilteredData(
-                    resList?.filter((item) => item.avgRating > 4.2)
+                    resList?.filter((item) => item.avgRating > 4.5)
                   );
                 }}
               >
@@ -121,6 +121,7 @@ const Main = () => {
               <input
                 className="border-2 border-black"
                 type="text"
+                data-testid="searchInput"
                 placeholder="Search for Food"
                 // onChange={handleSearch}
                 onChange={handleSearch}
