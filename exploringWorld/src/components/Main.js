@@ -25,13 +25,14 @@ const Main = () => {
   const getData = async () => {
     try {
       const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0059026&lng=77.5468264"
+        "https://namastedev.com/api/v1/listRestaurants"
       );
       const data = await response.json();
       let restaurants =
-        data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+        data?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
           (i) => i.info
         );
+       
       setResList(restaurants);
       setFilteredData(restaurants);
     } catch (error) {
@@ -147,7 +148,7 @@ const Main = () => {
                 to={"/restaurant/" + item.id}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                {item?.isOpen ? (
+                {item?.veg ? (
                   <RestaurantCardPromoted
                     resName={item?.name}
                     resType={item?.cuisines.join(", ")}
